@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Events\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Logging\" />
+    <Folder Include="Mongo\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+    <PackageReference Include="Polly" Version="5.6.1" />
+    <PackageReference Include="RawRabbit" Version="2.0.0-beta8" />
+    <PackageReference Include="RawRabbit.DependencyInjection.ServiceCollection" Version="2.0.0-beta8" />
+    <PackageReference Include="RawRabbit.Enrichers.Polly" Version="2.0.0-beta8" />
+    <PackageReference Include="RawRabbit.Operations.Publish" Version="2.0.0-beta8" />
+    <PackageReference Include="RawRabbit.Operations.Subscribe" Version="2.0.0-beta8" />
+    <PackageReference Include="Serilog" Version="2.6.0" />
+  </ItemGroup>
+</Project>
