@@ -4,5 +4,8 @@ C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debu
 C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debug\netstandard2.0\Frutinet.Common.csproj.CoreCompileInputs.cache
 C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debug\netstandard2.0\Frutinet.Common.AssemblyInfoInputs.cache
 C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debug\netstandard2.0\Frutinet.Common.AssemblyInfo.cs
-C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
-C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\bin\Debug\netstandard2.0\Frutinet.Common.pdb
+C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\bin\Debug\netstandard2.0\Microsoft.AspNetCore.dll
+C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\bin\Debug\netstandard2.0\Microsoft.AspNetCore.xml
+C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debug\netstandard2.0\Frutinet.Common.dll
+C:\Users\vnekrasevicius\Desktop\New folder\Frutinet\src\Frutinet.Common\obj\Debug\netstandard2.0\Frutinet.Common.pdb
