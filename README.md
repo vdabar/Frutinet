@@ -2,7 +2,7 @@
 Frutinet is .Net core application based on DDD and CQRS built in Microservices architecture. Commands are handled by message queu (RabbitMq).
 
 # Technology
-C#
+C#/
 RabbitMq
 ASP.NET Core
 MongoDB
