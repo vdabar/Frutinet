@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using RawRabbit.Instantiation;
 
 namespace Frutinet.Common.RabbitMq
 {
@@ -38,10 +39,18 @@ namespace Frutinet.Common.RabbitMq
         {
             var options = new RabbitMqOptions();
             var section = configuration.GetSection("rabbitmq");
+            section.Bind(options);
+            var client = RawRabbitFactory.CreateSingleton(new RawRabbitOptions
+            {
+                ClientConfiguration = options
+            });
+            service.AddSingleton<IBusClient>(_ => client);
         }
 
         private static string GetQueueName<T>()
         {
+            var a = Assembly.GetEntryAssembly().GetName();
+            var b = typeof(T).Name;
             return $"{Assembly.GetEntryAssembly().GetName()}/{typeof(T).Name}";
         }
     }

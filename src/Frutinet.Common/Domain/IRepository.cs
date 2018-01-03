@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Common.Domain
 {
-    //Marker interface
-    public interface ICommand
+    public interface IRepository<T> where T : IAggregateRoot
     {
-        Request Request { get; set; }
     }
 }

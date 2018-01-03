@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Services.Identity.Users.Services
 {
-    //Marker interface
-    public interface ICommand
+    public class AuthenticationService
     {
-        Request Request { get; set; }
+        
     }
 }

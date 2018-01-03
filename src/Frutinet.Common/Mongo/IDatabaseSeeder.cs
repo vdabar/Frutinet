@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Common.Mongo
 {
-    //Marker interface
-    public interface ICommand
+    public interface IDatabaseSeeder
     {
-        Request Request { get; set; }
+        Task SeedAsync();
     }
 }

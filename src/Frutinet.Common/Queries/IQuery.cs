@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Common.Queries
 {
-    //Marker interface
-    public interface ICommand
+    public interface IQuery
     {
-        Request Request { get; set; }
+        
     }
 }

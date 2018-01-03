@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Services.Identity.Users
 {
-    //Marker interface
-    public interface ICommand
+    public enum Provider
     {
-        Request Request { get; set; }
+        Facebook,
+        Frutinet
     }
 }
