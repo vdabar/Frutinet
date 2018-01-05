@@ -22,15 +22,18 @@ namespace Frutinet.Services.Identity.Users.Validators
                .EmailAddress().WithMessage("Email not valid.")
                .Length(1, 250).WithMessage("Email maximum length is 250 characters.")
                .MustAsync(HaveUniqueEmailAsync).WithMessage("Email already exists.");
-            RuleFor(c => c.UserName)
-                .NotEmpty().WithMessage("Name is required.")
-                .Length(1, 250).WithMessage("Name maximum length is 250 characters.")
-                .MustAsync(HaveUniqueUserNameAsync).WithMessage("Name already exists.");
+            RuleFor(c => c.FirstName)
+                .NotEmpty().WithMessage("First name is required")
+                .Length(1, 250).WithMessage("Email maximum length is 250 characters.");
+            RuleFor(c => c.LastName)
+                .NotEmpty().WithMessage("Last name is required")
+                .Length(1, 250).WithMessage("Email maximum length is 250 characters.");
+            RuleFor(c => c.Username)
+                .NotEmpty().WithMessage("Username is required.")
+                .Length(1, 250).WithMessage("Username maximum length is 250 characters.")
+                .MustAsync(HaveUniqueUserNameAsync).WithMessage("Username already exists.");
             RuleFor(c => c.Password)
-                .NotEmpty().WithMessage("Password can not be empty!");
-            RuleFor(c => Enum.Parse(typeof(Role), c.Role))
-                .IsInEnum().WithMessage(c => $"Can not create a new account for user id: '{c.Id}', invalid role: '{c.Role}'.")
-                .NotEqual(Role.Owner);
+                .NotEmpty().WithMessage("Password is required.");
         }
 
         private async Task<bool> HaveUniqueUserNameAsync(string name, CancellationToken arg2)
