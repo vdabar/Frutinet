@@ -9,15 +9,15 @@ namespace Frutinet.Services.Identity.Users.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<User> GetByEmailAsync(string email, string provider);
+        Task<User> GetByEmailAsync(string email);
 
-        Task<User> GetByUserIdAsync(string userId);
+        Task<User> GetByUserIdAsync(Guid userId);
 
         Task AddAsync(User user);
 
         Task UpdateAsync(User user);
 
-        Task DeleteAsync(string userId);
+        Task DeleteAsync(Guid userId);
 
         Task<bool> ExistsAsync(string name);
 

@@ -2,6 +2,7 @@
 using Frutinet.Common.Commands;
 using Frutinet.Common.Domain;
 using Frutinet.Common.Extensions;
+using Frutinet.Common.Services;
 using Frutinet.Services.Identity.Users.Commands;
 using System;
 using System.Collections.Generic;

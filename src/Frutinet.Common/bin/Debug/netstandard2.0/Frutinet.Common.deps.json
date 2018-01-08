@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "7ed17484205d1a63346de72a5299b7608a194921"
+    "signature": "a35af9b02fd07083a41f65bce6e28afdfaa3e186"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,6 +11,7 @@
         "dependencies": {
           "Autofac": "4.6.2",
           "FluentValidation": "7.3.3",
+          "Humanizer.Core": "2.2.0",
           "Microsoft.AspNetCore.Hosting": "2.0.1",
           "Microsoft.Extensions.Configuration": "2.0.0",
           "Microsoft.Extensions.Configuration.CommandLine": "2.0.0",
@@ -66,6 +67,14 @@
       "FluentValidation/7.3.3": {
         "runtime": {
           "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
+      "Humanizer.Core/2.2.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Humanizer.dll": {}
         }
       },
       "Microsoft.AspNetCore.Hosting/2.0.1": {
@@ -1486,6 +1495,13 @@
       "sha512": "sha512-evpalruQAVErNrogGrSn7Rg96Cak/R0Bj1rU6LFjw4hfgOqskU86S7U4rDnZlkgqKQiO5uElbvHVKLw7wGMiew==",
       "path": "fluentvalidation/7.3.3",
       "hashPath": "fluentvalidation.7.3.3.nupkg.sha512"
+    },
+    "Humanizer.Core/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rsYXB7+iUPP8AHgQ8JP2UZI2xK2KhjcdGr9E6zX3CsZaTLCaw8M35vaAJRo1rfxeaZEVMuXeaquLVCkZ7JcZ5Q==",
+      "path": "humanizer.core/2.2.0",
+      "hashPath": "humanizer.core.2.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Hosting/2.0.1": {
       "type": "package",

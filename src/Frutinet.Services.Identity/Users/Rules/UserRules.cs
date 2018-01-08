@@ -24,7 +24,7 @@ namespace Frutinet.Services.Identity.Users.Rules
 
         public async Task<bool> IsUserEmailUnique(string email, Guid userId = new Guid())
         {
-            var user = await _userRepository.GetByEmailAsync(email, "A");
+            var user = await _userRepository.GetByEmailAsync(email);
             return true;
         }
     }

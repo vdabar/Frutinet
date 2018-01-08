@@ -23,19 +23,19 @@ namespace Frutinet.Services.Identity.Users.Repositories
         public async Task<User> GetOwnerAsync()
             => await _database.Users().GetOwnerAsync();
 
-        public async Task<User> GetByUserIdAsync(string userId)
+        public async Task<User> GetByUserIdAsync(Guid userId)
             => await _database.Users().GetByUserIdAsync(userId);
 
         public async Task<User> GetByExternalUserIdAsync(string externalUserId)
             => await _database.Users().GetByExternalUserIdAsync(externalUserId);
 
-        public async Task<User> GetByEmailAsync(string email, string provider)
-            => await _database.Users().GetByEmailAsync(email, provider);
+        public async Task<User> GetByEmailAsync(string email)
+            => await _database.Users().GetByEmailAsync(email);
 
         public async Task<User> GetByNameAsync(string name)
             => await _database.Users().GetByNameAsync(name);
 
-        public async Task<string> GetStateAsync(string id)
+        public async Task<State?> GetStateAsync(Guid id)
             => await _database.Users().GetStateAsync(id);
 
         //public async Task<User> BrowseAsync(BrowseUsers query)
@@ -51,7 +51,7 @@ namespace Frutinet.Services.Identity.Users.Repositories
         public async Task UpdateAsync(User user)
             => await _database.Users().ReplaceOneAsync(x => x.Id == user.Id, user);
 
-        public async Task DeleteAsync(string userId)
-            => await _database.Users().DeleteOneAsync(x => x.UserId == userId);
+        public async Task DeleteAsync(Guid userId)
+            => await _database.Users().DeleteOneAsync(x => x.Id == userId);
     }
 }

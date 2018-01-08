@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Services.Identity.Framework
 {
-    //Marker interface
-    public interface ICommand
+    public class Bootstraper
     {
-       // Request Request { get; set; }
     }
 }

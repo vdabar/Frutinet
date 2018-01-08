@@ -12,28 +12,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RawRabbit.Instantiation;
+using Frutinet.Common.DependecyResolver;
 
 namespace Frutinet.Common.RabbitMq
 {
     public static class Extensions
     {
-        public static Task WithCommandHandlerAsync<TCommand>(
-            this IBusClient bus,
-            ICommandHandlerAsync<TCommand> handler) where TCommand : ICommand
+        public static Task WithCommandHandlerAsync<TCommand>(this IBusClient bus,
+             IResolver resolver, string name = null) where TCommand : ICommand
         {
-            return bus.SubscribeAsync<TCommand>(msg => handler.HandleAsync(msg),
+            return bus.SubscribeAsync<TCommand>(msg => resolver.Resolve<ICommandHandlerAsync<TCommand>>().HandleAsync(msg),
                 ctx => ctx.UseConsumerConfiguration(
-                    cfg => cfg.FromDeclaredQueue(q => q.WithName(GetQueueName<TCommand>()))));
+                    cfg => cfg.FromDeclaredQueue(q => q.WithName(GetExchangeName<TCommand>(name)))));
         }
 
         public static Task WithEventHandlerAsync<TEvent>(
             this IBusClient bus,
-            IEventHandlerAsync<TEvent> handler) where TEvent : IEvent
+            IResolver resolver, string name = null) where TEvent : IEvent
         {
-            return bus.SubscribeAsync<TEvent>(msg => handler.HandleAsync(msg),
+            return bus.SubscribeAsync<TEvent>(msg => resolver.Resolve<IEventHandlerAsync<IEvent>>().HandleAsync(msg),
                 ctx => ctx.UseConsumerConfiguration(
-                    cfg => cfg.FromDeclaredQueue(q => q.WithName(GetQueueName<TEvent>()))));
+                    cfg => cfg.FromDeclaredQueue(q => q.WithName(GetExchangeName<TEvent>(name)))));
         }
+
+        private static string GetExchangeName<T>(string name = null)
+            => string.IsNullOrWhiteSpace(name)
+                ? $"{Assembly.GetEntryAssembly().GetName()}/{typeof(T).Name}"
+                : $"{name}/{typeof(T).Name}";
 
         public static void AddRabbitMq(this IServiceCollection service, IConfiguration configuration)
         {

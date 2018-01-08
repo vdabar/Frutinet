@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frutinet.Common.Commands
+namespace Frutinet.Common.DependecyResolver
 {
-    //Marker interface
-    public interface ICommand
+    public interface IResolver
     {
-       // Request Request { get; set; }
+        T Resolve<T>();
     }
 }

@@ -34,14 +34,12 @@ namespace Frutinet.Services.Identity.Users.Repositories.Queries
             return await users.AsQueryable().FirstOrDefaultAsync(x => x.ExternalUserId == externalUserId);
         }
 
-        public static async Task<User> GetByEmailAsync(this IMongoCollection<User> users, string email, Provider? provider)
+        public static async Task<User> GetByEmailAsync(this IMongoCollection<User> users, string email)
         {
             if (email.Empty())
                 return null;
-            if (provider == null)
-                return null;
 
-            return await users.AsQueryable().FirstOrDefaultAsync(x => x.Email == email && x.Provider == provider);
+            return await users.AsQueryable().FirstOrDefaultAsync(x => x.Email == email);
         }
 
         public static async Task<User> GetByNameAsync(this IMongoCollection<User> users, string name)

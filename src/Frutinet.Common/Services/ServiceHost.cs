@@ -8,6 +8,8 @@ using RawRabbit;
 using Frutinet.Common.Commands;
 using Frutinet.Common.Events;
 using Frutinet.Common.RabbitMq;
+using Frutinet.Common.DependecyResolver;
+using Autofac;
 
 namespace Frutinet.Common.Services
 {
@@ -47,16 +49,26 @@ namespace Frutinet.Common.Services
         {
             private readonly IWebHost _webHost;
             private IBusClient _busClient;
+            private IResolver _resolver;
 
             public HostBuilder(IWebHost webHost)
             {
                 _webHost = webHost;
+                _resolver = new DefaultResolver(webHost);
             }
 
-            public BusBuilder UseRabbitMq()
+            public HostBuilder UseAutofac(ILifetimeScope scope)
             {
-                _busClient = (IBusClient)_webHost.Services.GetService(typeof(IBusClient));
-                return new BusBuilder(_webHost, _busClient);
+                _resolver = new AutofacResolver(scope);
+
+                return this;
+            }
+
+            public BusBuilder UseRabbitMq(string queueName = null)
+            {
+                _busClient = _resolver.Resolve<IBusClient>();
+
+                return new BusBuilder(_webHost, _busClient, _resolver, queueName);
             }
 
             public override ServiceHost Build()
@@ -69,24 +81,27 @@ namespace Frutinet.Common.Services
         {
             private readonly IWebHost _webHost;
             private IBusClient _bus;
+            private readonly IResolver _resolver;
+            private readonly string _queueName;
 
-            public BusBuilder(IWebHost webHost, IBusClient bus)
+            public BusBuilder(IWebHost webHost, IBusClient bus, IResolver resolver, string queueName = null)
             {
                 _webHost = webHost;
                 _bus = bus;
+                _resolver = resolver;
+                _queueName = queueName;
             }
 
             public BusBuilder SubsribeToCommand<TCommand>() where TCommand : ICommand
             {
-                var handler = (ICommandHandlerAsync<TCommand>)_webHost.Services.GetService(typeof(ICommandHandlerAsync<TCommand>));
-                _bus.WithCommandHandlerAsync(handler);
+                _bus.WithCommandHandlerAsync<TCommand>(_resolver, _queueName);
                 return this;
             }
 
             public BusBuilder SubsribeToEvent<TEvent>() where TEvent : IEvent
             {
                 var handler = (IEventHandlerAsync<TEvent>)_webHost.Services.GetService(typeof(IEventHandlerAsync<TEvent>));
-                _bus.WithEventHandlerAsync(handler);
+                _bus.WithEventHandlerAsync<TEvent>(_resolver, _queueName);
                 return this;
             }
 
