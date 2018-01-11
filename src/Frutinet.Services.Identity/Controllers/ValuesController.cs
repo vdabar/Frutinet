@@ -1,44 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System;
+using Frutinet.Services.Identity.Users.Commands;
+using RawRabbit.Extensions;
+using RawRabbit.Configuration.Exchange;
+using RawRabbit;
 
 namespace Frutinet.Services.Identity.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class HomeController : Controller
     {
-        // GET api/values
+        private readonly IBusClient _busClient;
+
+        public HomeController(IBusClient busClient)
+        {
+            _busClient = busClient;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        public IActionResult Get() => Content("Hello world");
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody] CreateUser command)
         {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var commandId = Guid.NewGuid();
+            await _busClient.PublishAsync(command, commandId, cfg => cfg
+           .WithExchange(exchange => exchange.WithType(ExchangeType.Topic).WithName("Frutinet.Services.Identity"))
+           .WithRoutingKey("user.create"));
+            return await Task.FromResult(Accepted(command));
         }
     }
 }

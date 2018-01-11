@@ -9,8 +9,21 @@ namespace Frutinet.Services.Identity.Users.Events
 {
     public class CreateUserRejected : IRejectedEvent
     {
-        public string Reason { get; set; }
+        public Guid RequestId { get; set; }
+        public string UserId { get; set; }
         public string Code { get; set; }
-        public string Email { get; set; }
+        public string Reason { get; set; }
+
+        public CreateUserRejected()
+        {
+        }
+
+        public CreateUserRejected(Guid requestId, string userId, string code, string reason)
+        {
+            RequestId = requestId;
+            UserId = userId;
+            Code = code;
+            Reason = reason;
+        }
     }
 }

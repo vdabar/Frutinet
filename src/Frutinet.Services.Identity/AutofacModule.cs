@@ -16,11 +16,11 @@ namespace Frutinet.Services.Identity
         {
             // var infrastructureAssembly = typeof(AggregateRoot).GetTypeInfo().Assembly;
             var domainAssembly = typeof(CreateUser).GetTypeInfo().Assembly;
-            var dataAssembly = typeof(IUserRepository).GetTypeInfo().Assembly;
+            // var dataAssembly = typeof(IUserRepository).GetTypeInfo().Assembly;
             //var reportingAssembly = typeof(GetMaze).GetTypeInfo().Assembly;
             //builder.RegisterAssemblyTypes(infrastructureAssembly).AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(domainAssembly).AsImplementedInterfaces();
-            builder.RegisterAssemblyTypes(dataAssembly).AsImplementedInterfaces();
+            // builder.RegisterAssemblyTypes(dataAssembly).AsImplementedInterfaces();
             //builder.RegisterAssemblyTypes(reportingAssembly).AsImplementedInterfaces();
         }
     }

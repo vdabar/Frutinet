@@ -17,6 +17,7 @@ namespace Frutinet.Services.Identity.Users
         public string Email { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
+        public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
@@ -35,6 +36,12 @@ namespace Frutinet.Services.Identity.Users
         public User(CreateUser cmd)
         {
             Email = cmd.Email;
+            UserName = cmd.Username;
+            Firstname = cmd.FirstName;
+            Surname = cmd.LastName;
+            State = State.Active;
+            Role = Role.Associate;
+            Provider = Provider.Frutinet;
         }
 
         public static User CreateNew(CreateUser cmd, IValidator<CreateUser> validator)

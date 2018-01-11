@@ -7,18 +7,15 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Frutinet.Common.Commands;
-using Frutinet.Common.Events;
-using Frutinet.Common.Services;
-using Frutinet.Services.Identity.Users.Repositories;
+using Frutinet.Common.Mongo;
+using Frutinet.Common.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Polly;
-using RabbitMQ.Client.Exceptions;
+using Frutinet.Common.Extensions;
 using RawRabbit.Configuration;
+using Frutinet.Services.Identity.Configure;
 
 namespace Frutinet.Services.Identity
 {
@@ -36,28 +33,17 @@ namespace Frutinet.Services.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMongoDB(Configuration);
 
-            var rmqRetryPolicy = Policy
-              .Handle<ConnectFailureException>()
-              .Or<BrokerUnreachableException>()
-              .Or<IOException>()
-              .WaitAndRetry(5, retryAttempt =>
-                  TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                  (exception, timeSpan, retryCount, context) =>
-                  {
-                      //logger.LogError(new EventId(10001, "RabbitMQ Connect Error"), exception, $"Cannot connect to RabbitMQ. retryCount:{retryCount}, duration:{timeSpan}");
-                  }
-              );
+            services.AddMvc();
 
             var builder = new ContainerBuilder();
 
+            builder.RegisterModule(new AutofacModule());
+
             builder.Populate(services);
 
-            var assembly = typeof(Startup).GetTypeInfo().Assembly;
-            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IEventHandlerAsync<>));
-            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandlerAsync<>));
-            builder.RegisterType<UserRepository>().As<IUserRepository>();
+            RabbitMqContainer.Register(builder, Configuration.GetSettings<RawRabbitConfiguration>());
 
             LifetimeScope = builder.Build().BeginLifetimeScope();
 
@@ -71,6 +57,7 @@ namespace Frutinet.Services.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseMvc();
         }

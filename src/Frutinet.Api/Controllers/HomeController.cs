@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Frutinet.Api.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
     public class HomeController : Controller
     {
         private readonly IBusClient _busClient;

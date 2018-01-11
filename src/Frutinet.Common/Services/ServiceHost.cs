@@ -92,16 +92,19 @@ namespace Frutinet.Common.Services
                 _queueName = queueName;
             }
 
-            public BusBuilder SubsribeToCommand<TCommand>() where TCommand : ICommand
+            public BusBuilder SubscribeToCommand<TCommand>(string exchangeName = null, string routingKey = null) where TCommand : ICommand
             {
-                _bus.WithCommandHandlerAsync<TCommand>(_resolver, _queueName);
+                var commandHandler = _resolver.Resolve<ICommandHandlerAsync<TCommand>>();
+                _bus.WithCommandHandlerAsync(commandHandler, exchangeName, routingKey);
+
                 return this;
             }
 
-            public BusBuilder SubsribeToEvent<TEvent>() where TEvent : IEvent
+            public BusBuilder SubscribeToEvent<TEvent>(string exchangeName = null, string routingKey = null) where TEvent : IEvent
             {
-                var handler = (IEventHandlerAsync<TEvent>)_webHost.Services.GetService(typeof(IEventHandlerAsync<TEvent>));
-                _bus.WithEventHandlerAsync<TEvent>(_resolver, _queueName);
+                var eventHandler = _resolver.Resolve<IEventHandlerAsync<TEvent>>();
+                _bus.WithEventHandlerAsync(eventHandler, exchangeName, routingKey);
+
                 return this;
             }
 

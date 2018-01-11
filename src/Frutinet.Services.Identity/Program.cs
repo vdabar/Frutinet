@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Frutinet.Common.Services;
-using Frutinet.Services.Identity.Framework;
 using Frutinet.Services.Identity.Users.Commands;
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +19,7 @@ namespace Frutinet.Services.Identity
             ServiceHost.Create<Startup>(args)
                 .UseAutofac(Startup.LifetimeScope)
                 .UseRabbitMq(queueName: typeof(Program).Namespace)
-                .SubsribeToCommand<CreateUser>()
+                .SubscribeToCommand<CreateUser>(exchangeName: "Frutinet.Services.Users", routingKey: "user.create")
                 .Build()
                 .Run();
         }

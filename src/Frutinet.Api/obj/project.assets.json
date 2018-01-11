@@ -56,7 +56,7 @@
           "lib/netstandard1.3/DnsClient.dll": {}
         }
       },
-      "FluentValidation/7.3.3": {
+      "FluentValidation/7.3.4": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/FluentValidation.dll": {}
@@ -2811,34 +2811,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/10.0.1": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
-          "System.Collections": "4.3.0",
+          "NETStandard.Library": "1.6.1",
           "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Numerics": "4.3.0",
           "System.Runtime.Serialization.Formatters": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
         },
         "compile": {
@@ -2870,7 +2850,7 @@
           "lib/net45/NLog.dll": {}
         }
       },
-      "Polly/5.6.1": {
+      "Polly/5.7.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -2925,6 +2905,19 @@
           "lib/netstandard1.5/RawRabbit.dll": {}
         }
       },
+      "RawRabbit.Attributes/1.10.4": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "RawRabbit": "1.10.4"
+        },
+        "compile": {
+          "lib/netstandard1.5/RawRabbit.Attributes.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/RawRabbit.Attributes.dll": {}
+        }
+      },
       "RawRabbit.DependencyInjection.ServiceCollection/2.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -2953,6 +2946,21 @@
           "lib/netstandard1.5/RawRabbit.Enrichers.Polly.dll": {}
         }
       },
+      "RawRabbit.Extensions/1.10.4": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "RawRabbit": "1.10.4",
+          "RawRabbit.vNext": "1.10.4",
+          "System.Net.Http": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.5/RawRabbit.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/RawRabbit.Extensions.dll": {}
+        }
+      },
       "RawRabbit.Operations.Publish/2.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -2977,6 +2985,23 @@
         },
         "runtime": {
           "lib/netstandard1.5/RawRabbit.Operations.Subscribe.dll": {}
+        }
+      },
+      "RawRabbit.vNext/1.10.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "Microsoft.Extensions.Logging": "2.0.0",
+          "Newtonsoft.Json": "10.0.3",
+          "RawRabbit": "1.10.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/RawRabbit.vNext.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RawRabbit.vNext.dll": {}
         }
       },
       "Remotion.Linq/2.1.1": {
@@ -5182,7 +5207,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Autofac": "4.6.2",
-          "FluentValidation": "7.3.3",
+          "FluentValidation": "7.3.4",
           "Humanizer.Core": "2.2.0",
           "Microsoft.AspNetCore.Hosting": "2.0.1",
           "Microsoft.Extensions.Configuration": "2.0.0",
@@ -5191,12 +5216,12 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "2.0.0",
           "MongoDB.Driver": "2.5.0",
           "NLog": "4.4.12",
-          "Polly": "5.6.1",
-          "RawRabbit": "2.0.0-beta8",
-          "RawRabbit.DependencyInjection.ServiceCollection": "2.0.0-beta8",
-          "RawRabbit.Enrichers.Polly": "2.0.0-beta8",
-          "RawRabbit.Operations.Publish": "2.0.0-beta8",
-          "RawRabbit.Operations.Subscribe": "2.0.0-beta8",
+          "Polly": "5.7.0",
+          "RabbitMQ.Client": "5.0.1",
+          "RawRabbit": "1.10.4",
+          "RawRabbit.Attributes": "1.10.4",
+          "RawRabbit.Extensions": "1.10.4",
+          "RawRabbit.vNext": "1.10.4",
           "Serilog": "2.6.0"
         },
         "compile": {
@@ -5212,11 +5237,16 @@
         "dependencies": {
           "Autofac": "4.6.2",
           "Autofac.Extensions.DependencyInjection": "4.2.0",
-          "FluentValidation": "7.3.3",
+          "FluentValidation": "7.3.4",
           "Frutinet.Common": "1.0.0",
-          "Microsoft.AspNetCore.All": "2.0.3",
+          "Microsoft.AspNetCore.All": "2.0.5",
           "Microsoft.NETCore.App": "2.0.0",
-          "MongoDB.Driver": "2.5.0"
+          "MongoDB.Driver": "2.5.0",
+          "Polly": "5.7.0",
+          "RawRabbit": "1.10.4",
+          "RawRabbit.Attributes": "1.10.4",
+          "RawRabbit.Extensions": "1.10.4",
+          "RawRabbit.vNext": "1.10.4"
         },
         "compile": {
           "bin/placeholder/Frutinet.Services.Identity.dll": {}
@@ -5265,12 +5295,12 @@
         "lib/netstandard1.3/DnsClient.xml"
       ]
     },
-    "FluentValidation/7.3.3": {
-      "sha512": "evpalruQAVErNrogGrSn7Rg96Cak/R0Bj1rU6LFjw4hfgOqskU86S7U4rDnZlkgqKQiO5uElbvHVKLw7wGMiew==",
+    "FluentValidation/7.3.4": {
+      "sha512": "UMiYkJbHtGRTCFTmJdbmfJwRhJ/ENFeGZPkJS7WuZQmJV2PZ0glRXr4LZr40+OgwaJVi67Cy1DzR8uG+hVuvmA==",
       "type": "package",
-      "path": "fluentvalidation/7.3.3",
+      "path": "fluentvalidation/7.3.4",
       "files": [
-        "fluentvalidation.7.3.3.nupkg.sha512",
+        "fluentvalidation.7.3.4.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net45/FluentValidation.dll",
         "lib/net45/FluentValidation.xml",
@@ -8103,11 +8133,12 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/10.0.1": {
-      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
+    "Newtonsoft.Json/10.0.3": {
+      "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
-      "path": "newtonsoft.json/10.0.1",
+      "path": "newtonsoft.json/10.0.3",
       "files": [
+        "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -8120,9 +8151,11 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.1.nupkg.sha512",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.10.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
@@ -8165,10 +8198,10 @@
         "nlog.nuspec"
       ]
     },
-    "Polly/5.6.1": {
-      "sha512": "Zm6mTvN9qk1wJ5hIqQ6ogJvYFRFyzyprRLTR6cNvvGn+jKwSM0wu0pZpZU/kNubYdiXtMNju6DL+/ILS7UaYlg==",
+    "Polly/5.7.0": {
+      "sha512": "MpWBzuzoO+J6MxaHJ5KuCk0KEVKZrlkg7xlkCl11rIU8D5h2m/4zdU2GtrQsc4dR6OHiFyh3w78Eyxt0mZ2RwQ==",
       "type": "package",
-      "path": "polly/5.6.1",
+      "path": "polly/5.7.0",
       "files": [
         "lib/net45/Polly.dll",
         "lib/net45/Polly.pdb",
@@ -8177,7 +8210,7 @@
         "lib/netstandard1.1/Polly.dll",
         "lib/netstandard1.1/Polly.pdb",
         "lib/netstandard1.1/Polly.xml",
-        "polly.5.6.1.nupkg.sha512",
+        "polly.5.7.0.nupkg.sha512",
         "polly.nuspec"
       ]
     },
@@ -8205,6 +8238,17 @@
         "rawrabbit.nuspec"
       ]
     },
+    "RawRabbit.Attributes/1.10.4": {
+      "sha512": "mE3vdFcy2yAkN3t24PvQbuQeet/E7NkiAHUyauFMUxbCvoLu4YfuW98B/gnGCE9lZH0S735KYg0QeyzbmvKsfA==",
+      "type": "package",
+      "path": "rawrabbit.attributes/1.10.4",
+      "files": [
+        "lib/net451/RawRabbit.Attributes.dll",
+        "lib/netstandard1.5/RawRabbit.Attributes.dll",
+        "rawrabbit.attributes.1.10.4.nupkg.sha512",
+        "rawrabbit.attributes.nuspec"
+      ]
+    },
     "RawRabbit.DependencyInjection.ServiceCollection/2.0.0-beta8": {
       "sha512": "1Ol7ThyJjqIUDTGuPXPTgNype6lCiy8IGp8Hqh/PUWZPYpYEnNip92BFAGsey9QoCfqw8nzPdW1/jk+Ic01BAg==",
       "type": "package",
@@ -8227,6 +8271,17 @@
         "rawrabbit.enrichers.polly.nuspec"
       ]
     },
+    "RawRabbit.Extensions/1.10.4": {
+      "sha512": "BhVDluwVeh5nEBkl/PzCgXWwnm7tn4tUaDvLis+25dfmgmdBo7KFa/MRQ9MysRG4VRmMri4bN8I77/L5pCrMmg==",
+      "type": "package",
+      "path": "rawrabbit.extensions/1.10.4",
+      "files": [
+        "lib/net451/RawRabbit.Extensions.dll",
+        "lib/netstandard1.5/RawRabbit.Extensions.dll",
+        "rawrabbit.extensions.1.10.4.nupkg.sha512",
+        "rawrabbit.extensions.nuspec"
+      ]
+    },
     "RawRabbit.Operations.Publish/2.0.0-beta8": {
       "sha512": "AE4amKO8dI276sFiWJb5nu8Y2raACZW40qZtub9bOZe34Noe32KL3AI6hs4pTkbEVwh/Bjo/f9uhHj7gjiOzig==",
       "type": "package",
@@ -8247,6 +8302,18 @@
         "lib/netstandard1.5/RawRabbit.Operations.Subscribe.dll",
         "rawrabbit.operations.subscribe.2.0.0-beta8.nupkg.sha512",
         "rawrabbit.operations.subscribe.nuspec"
+      ]
+    },
+    "RawRabbit.vNext/1.10.4": {
+      "sha512": "ziJXqHPolgN7+/TGU621IFvpxrdmwmDNtCHlYYR76ZLU88QO4jkQWWKgTBvXd4WcpO5fNMnH9Puov6uisn07Iw==",
+      "type": "package",
+      "path": "rawrabbit.vnext/1.10.4",
+      "files": [
+        "lib/net451/RawRabbit.vNext.dll",
+        "lib/netstandard1.5/RawRabbit.vNext.dll",
+        "lib/netstandard2.0/RawRabbit.vNext.dll",
+        "rawrabbit.vnext.1.10.4.nupkg.sha512",
+        "rawrabbit.vnext.nuspec"
       ]
     },
     "Remotion.Linq/2.1.1": {
@@ -13584,6 +13651,15 @@
       "warningLevel": 1,
       "message": "Package 'NLog 4.4.12' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "NLog",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.AspNetCore.All from 2.0.5 to 2.0.3. Reference the package directly from the project to select a different version. \r\n Frutinet.Api -> Frutinet.Services.Identity -> Microsoft.AspNetCore.All (>= 2.0.5) \r\n Frutinet.Api -> Microsoft.AspNetCore.All (>= 2.0.3)",
+      "libraryId": "Microsoft.AspNetCore.All",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.0"
       ]
